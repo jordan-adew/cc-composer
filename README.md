@@ -7,11 +7,11 @@
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝
               model-aware parallel orchestration for cc
 
-                  ┌─→ haiku  ──┐
-                  ├─→ haiku  ──┤
-/composer ────────┼─→ sonnet ──┼─→ done
-                  ├─→ sonnet ──┤
-                  └─→ opus   ──┘
+                                 ┌─→ haiku  ──┐
+                                 ├─→ haiku  ──┤
+               /composer ────────┼─→ sonnet ──┼─→ done
+                                 ├─→ sonnet ──┤
+                                 └─→ opus   ──┘
 ```
 
 A cc skill that fans out parallel-shaped tasks across Haiku, Sonnet, and Opus — routing each subagent to the cheapest viable model, with cost discipline and conflict-detection bail-outs to keep composer's own overhead from defeating the purpose.
@@ -102,22 +102,15 @@ Dispatch on approval? (y/n)
 
 ## Installation
 
-Drop `SKILL.md` into your cc skills directory:
+One command:
 
 ```bash
-mkdir -p ~/.claude/skills/composer
-curl -o ~/.claude/skills/composer/SKILL.md \
-  https://raw.githubusercontent.com/jordan-adew/cc-composer/main/SKILL.md
+mkdir -p ~/.claude/skills/composer && curl -o ~/.claude/skills/composer/SKILL.md https://raw.githubusercontent.com/jordan-adew/cc-composer/main/SKILL.md
 ```
 
-Or clone:
+Then start a fresh cc session — `/composer` is now available as a skill.
 
-```bash
-git clone https://github.com/jordan-adew/cc-composer.git
-cp cc-composer/SKILL.md ~/.claude/skills/composer/
-```
-
-Then start a fresh cc session — `/composer` will be available as a skill.
+*Manual alternative: download [`SKILL.md`](https://github.com/jordan-adew/cc-composer/blob/main/SKILL.md) and place it at `~/.claude/skills/composer/SKILL.md`.*
 
 ## Requirements
 
