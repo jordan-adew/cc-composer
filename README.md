@@ -6,12 +6,6 @@
 ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝███████║███████╗██║  ██║
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝
               model-aware parallel orchestration for cc
-
-                                  ┌─→ haiku  ──┐
-                                  ├─→ haiku  ──┤
-                /composer ────────┼─→ sonnet ──┼─→ done
-                                  ├─→ sonnet ──┤
-                                  └─→ opus   ──┘
 ```
 
 A cc skill that fans out parallel-shaped tasks across Haiku, Sonnet, and Opus — routing each subagent to the cheapest viable model, with cost discipline and conflict-detection bail-outs to keep composer's own overhead from defeating the purpose.
@@ -64,6 +58,14 @@ Composer will refuse and tell you to do it inline if:
 Bail-outs are direct, not polite. The skill exists because the wrong tasks defeat its purpose.
 
 ## How it works
+
+```
+                  ┌─→ haiku  ──┐
+                  ├─→ haiku  ──┤
+/composer ────────┼─→ sonnet ──┼─→ done
+                  ├─→ sonnet ──┤
+                  └─→ opus   ──┘
+```
 
 1. You invoke `/composer` with a task description
 2. Parent model (Sonnet or Opus) plans the decomposition
